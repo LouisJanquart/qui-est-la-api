@@ -38,10 +38,13 @@ app.use(express.static("public"));
 // Configuration session
 app.use(
   session({
-    secret: "super-secret", // Change en production
+    secret: "super-secret",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }, // true si HTTPS
+    cookie: {
+      secure: true,
+      sameSite: "none",
+    },
   })
 );
 
