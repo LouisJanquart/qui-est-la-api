@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const db = require("../db");
 
-// ✅ Connexion
+// POST /api/admin/login
 router.post("/", (req, res) => {
   const { email, mot_de_passe } = req.body;
 
@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
   );
 });
 
-// ✅ Vérification session (admin connecté)
+// GET /api/admin/me
 router.get("/me", (req, res) => {
   if (!req.session.adminId) {
     return res.status(401).json({ error: "Non connecté" });
@@ -50,7 +50,7 @@ router.get("/me", (req, res) => {
   );
 });
 
-// ✅ Déconnexion
+// POST /api/admin/logout
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) return res.status(500).json({ error: "Erreur logout" });

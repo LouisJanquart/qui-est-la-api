@@ -6,7 +6,7 @@ const session = require("express-session");
 
 const app = express();
 
-// 🔐 CORS avec origine dynamique
+// CORS
 const allowedOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:5501",
@@ -28,12 +28,12 @@ app.use(
   })
 );
 
-// 📦 Middlewares
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// 🔐 Configuration session
+// Configuration session
 app.use(
   session({
     secret: "super-secret", // Change en production
@@ -43,7 +43,7 @@ app.use(
   })
 );
 
-// 🛣️ Routes
+// Routes
 app.use("/api/visites", require("./routes/visites"));
 app.use("/api/visiteurs", require("./routes/visiteurs"));
 app.use("/api/admin", require("./routes/admin"));
