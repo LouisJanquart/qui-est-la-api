@@ -6,6 +6,8 @@ const session = require("express-session");
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // CORS
 const allowedOrigins = [
   "http://localhost:5173",
